@@ -1,8 +1,8 @@
 # Specify the provider and details
 provider "aws" {
   region     = "us-east-2"
-  access_key = "AKIAIAF3EAXMOQBXOFHQ"
-  secret_key = "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"
+  access_key = "${var.aws_access_key}"
+  secret_key = "${var.aws_secret_key}"
 }
 
 #Identify most recent Xenial 16.04 build
@@ -84,6 +84,14 @@ resource "aws_subnet" "default_green" {
   cidr_block              = "10.0.2.0/24"
   map_public_ip_on_launch = true
   availability_zone       = "us-east-2b"
+}
+
+# Create the MANAGEMENT subnet
+resource "aws_subnet" "default_mgmt" {
+  vpc_id                  = "${aws_vpc.default.id}"
+  cidr_block              = "10.0.3.0/24"
+  map_public_ip_on_launch = true
+  availability_zone       = "us-east-2c"
 }
 
 # A security group for the ELB so it is accessible via the web
@@ -196,20 +204,20 @@ resource "aws_elb" "web" {
   } 
 }
 
-resource "aws_key_pair" "terratesting" {
-  key_name   = "TerraTesting"
-  public_key = "D:\\Libraries\\Pyralix\\Documents\\GitHub\\Private_Resources\\TerraTesting-us-east-2-putty.pem"
-}
+#resource "aws_key_pair" "terratesting" {
+#  key_name   = "TerraTesting"
+#  public_key = "D:\\Libraries\\Pyralix\\Documents\\GitHub\\Private_Resources\\TerraTesting-us-east-2-putty.pem"
+#}
 
-resource "aws_instance" "web" {
+resource "aws_instance" "bastion" {
   # The connection block tells our provisioner how to
   # communicate with the resource (instance)
-  connection {
-    # The default username for our AMI
-    user = "ubuntu"
-
-    # The connection will use the local SSH agent for authentication.
-  }
+  #connection {
+  #  # The default username for our AMI
+  #  user = "ubuntu"
+  #
+  #  # The connection will use the local SSH agent for authentication.
+  #}
 
   instance_type = "t2.micro"
 
@@ -218,7 +226,7 @@ resource "aws_instance" "web" {
   ami = "${data.aws_ami.ubuntu_xenial.id}"
 
   # The name of our SSH keypair we created above.
-  key_name = "TerraTesting"
+  key_name = "${var.key_name}"
 
   # Our Security group to allow HTTP and SSH access
   vpc_security_group_ids = ["${aws_security_group.default.id}"]
@@ -226,8 +234,8 @@ resource "aws_instance" "web" {
   # We're going to launch into the same subnet as our ELB. In a production
   # environment it's more common to have a separate private subnet for
   # backend instances.
-  subnet_id               = "${aws_subnet.default_blue.id}"
-  availability_zone       = "us-east-2a"
+  subnet_id               = "${aws_subnet.default_mgmt.id}"
+  availability_zone       = "us-east-2c"
 
   # We run a remote provisioner on the instance after creating it.
   # In this case, we just install nginx and start it. By default,
