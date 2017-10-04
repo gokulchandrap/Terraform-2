@@ -1,3 +1,6 @@
+#using this made things weird. Perhaps the bastion host, being something that is done only
+#once could be configured manually...... Or by chef?
+
 {
   "variables": {
     "aws_access_key": "",
