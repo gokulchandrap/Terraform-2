@@ -2,24 +2,6 @@
 # Use this to add any management stations
 #
 
-
-#Identify most recent Xenial 16.04 build
-data "aws_ami" "ubuntu_xenial" {
-  most_recent = true
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  owners = ["099720109477"] # Canonical
-}
-
 resource "aws_instance" "bastionhost" {
   # The connection block tells our provisioner how to
   # communicate with the resource (instance)
