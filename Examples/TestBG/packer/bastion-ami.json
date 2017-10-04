@@ -9,7 +9,7 @@
     "secret_key": "{{user `aws_secret_key`}}",
     "region": "us-east-2",
     "vpc_id": "vpc-f6013d9f",
-    "subnet_id": "vpc-f6013d9f",
+    "subnet_id": "subnet-6254dc2f",
     "source_ami_filter": {
       "filters": {
       "virtualization-type": "hvm",
