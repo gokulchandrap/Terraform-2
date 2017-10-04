@@ -30,7 +30,7 @@ resource "aws_instance" "greenweb1" {
   subnet_id               = "${aws_subnet.default_green.id}"
   availability_zone       = "us-east-2a"
   tags{
-    Name                  = "TT_Blue_Web1"
+    Name                  = "TT_Green_Web1"
   }
   # We run a remote provisioner on the instance after creating it.
   # In this case, we just install nginx and start it. By default,
@@ -43,7 +43,7 @@ resource "aws_instance" "greenweb1" {
     ]
   }
   tags {
-    Name = "TT_Blue_Web1"
+    Name = "TT_Green_Web1"
   }
 }
 
@@ -75,7 +75,7 @@ resource "aws_instance" "greenweb2" {
   subnet_id               = "${aws_subnet.default_green.id}"
   availability_zone       = "us-east-2a"
   tags{
-    Name                  = "TT_Blue_Web2"
+    Name                  = "TT_Green_Web2"
   }
   # We run a remote provisioner on the instance after creating it.
   # In this case, we just install nginx and start it. By default,
@@ -88,6 +88,6 @@ resource "aws_instance" "greenweb2" {
     ]
   }
   tags {
-    Name = "TT_Blue_Web2"
+    Name = "TT_Green_Web2"
   }
 }
