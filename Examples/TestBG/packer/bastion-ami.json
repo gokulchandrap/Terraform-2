@@ -37,6 +37,8 @@
       "sudo mv terraform /bin/",
       "sudo mv packer /bin/",
       "git clone https://github.com/pyralix/Terraform.git"
+      "cd ~/Terraform/Examples/TestBG"
+      "rm terraform.tfstate"
     ]
     }]
 
