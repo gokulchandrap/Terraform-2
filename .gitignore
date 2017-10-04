@@ -5,3 +5,4 @@
 *.tfstate
 Examples/TestBG/terraform.tfstate
 Examples/TestBG/deployplan
+*.tfstate
