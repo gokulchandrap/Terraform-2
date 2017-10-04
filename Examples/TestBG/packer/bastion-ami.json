@@ -27,7 +27,7 @@
     "type": "shell",
     "inline": [
       "sleep 30",
-      "sudo apt-get update && sudo apt-get upgrade",
+      "sudo apt-get update -y && sudo apt-get upgrade -y",
       "sudo apt install zip unzip -y",
       "cd ~",
       "wget https://releases.hashicorp.com/terraform/0.10.7/terraform_0.10.7_linux_amd64.zip",
