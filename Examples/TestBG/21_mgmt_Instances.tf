@@ -16,7 +16,7 @@ resource "aws_instance" "bastionhost" {
 
   # Lookup the correct AMI based on the region
   # we specified
-  ami = "${data.aws_ami.ubuntu_xenial.id}"
+  ami = "ami-9bf4d9fe"
 
   # The name of our SSH keypair we created above.
   key_name = "${var.key_name}"
