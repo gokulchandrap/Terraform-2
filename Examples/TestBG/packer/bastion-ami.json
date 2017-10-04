@@ -36,8 +36,7 @@
       "unzip packer_1.1.0_linux_amd64.zip",
       "sudo mv terraform /bin/",
       "sudo mv packer /bin/",
-      "git clone https://github.com/pyralix/Terraform.git",
-
+      "git clone https://github.com/pyralix/Terraform.git"
     ]
     }]
 
