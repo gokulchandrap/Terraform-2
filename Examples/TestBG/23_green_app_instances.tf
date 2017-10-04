@@ -28,7 +28,7 @@ resource "aws_instance" "greenweb1" {
   # environment it's more common to have a separate private subnet for
   # backend instances.
   subnet_id               = "${aws_subnet.default_green.id}"
-  availability_zone       = "us-east-2a"
+  availability_zone       = "us-east-2b"
   tags{
     Name                  = "TT_Green_Web1"
   }
@@ -73,7 +73,7 @@ resource "aws_instance" "greenweb2" {
   # environment it's more common to have a separate private subnet for
   # backend instances.
   subnet_id               = "${aws_subnet.default_green.id}"
-  availability_zone       = "us-east-2a"
+  availability_zone       = "us-east-2b"
   tags{
     Name                  = "TT_Green_Web2"
   }
