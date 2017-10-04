@@ -23,8 +23,7 @@
     "ssh_username": "ubuntu",
     "ami_name": "TT-BastionHost {{timestamp}}"
   }]
-}
-
+},
   "provisioners": [{
     "type": "shell",
     "inline": [
