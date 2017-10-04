@@ -42,6 +42,7 @@
       "git clone https://github.com/pyralix/Terraform.git"
       "cd ~/Terraform/Examples/TestBG"
       "rm terraform.tfstate"
+	  "terraform init"
     ]
     }]
 
