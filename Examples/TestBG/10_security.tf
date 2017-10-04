@@ -183,3 +183,51 @@ resource "aws_security_group" "bastionsg" {
     Name  = "Bastion_SG"
   }
 }
+
+resource "aws_security_group" "artifactorysg" {
+  name        = "Artifactory_SG"
+  description = "Used for the Artifactory host"
+  vpc_id      = "${aws_vpc.default.id}"
+
+  # Anything from Home
+  ingress {
+	from_port   = 0
+	to_port     = 0
+	protocol    = -1
+	cidr_blocks = ["68.40.189.0/24"]
+  }
+
+  # Anything from Work
+  ingress {
+	from_port   = 0
+	to_port     = 0
+	protocol    = -1
+	cidr_blocks = ["50.224.85.2/32"]
+  }
+
+  # Allow BLUE/GREEN to hit artifactory ports
+  ingress {
+    from_port = 8080
+    to_port = 8081
+    protocol = "tcp"
+    cidr_blocks = ["10.0.0.0/23"]
+  }
+
+  ingress {
+    from_port = 8080
+    to_port = 8081
+    protocol = "udp"
+    cidr_blocks = ["10.0.0.0/23"]
+  }
+
+  # outbound internet access
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  tags{
+    Name  = "Artifactory_SG"
+  }
+}
