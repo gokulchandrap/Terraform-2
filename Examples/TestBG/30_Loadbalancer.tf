@@ -3,7 +3,7 @@ resource "aws_elb" "webelb" {
 
   subnets         = ["${aws_subnet.default_blue.id}", "${aws_subnet.default_green.id}"]
   security_groups = ["${aws_security_group.elbsg.id}"]
-  instances       = ["${aws_instance.web1.id}", "${aws_instance.web2.id}"]
+  instances       = ["${aws_instance.blueweb1.id}", "${aws_instance.blueweb2.id}"]
 
   listener {
     instance_port     = 80

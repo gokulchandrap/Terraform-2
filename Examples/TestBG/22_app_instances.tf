@@ -2,13 +2,13 @@
 # Use this to add any Application stations
 #
 
-resource "aws_instance" "web1" {
+resource "aws_instance" "blueweb1" {
   # The connection block tells our provisioner how to
   # communicate with the resource (instance)
   connection {
     # The default username for our AMI
     user = "ubuntu"
-
+    host = "${aws_instance.blueweb1.private_ip}"
     # The connection will use the local SSH agent for authentication.
   }
 
@@ -30,7 +30,7 @@ resource "aws_instance" "web1" {
   subnet_id               = "${aws_subnet.default_blue.id}"
   availability_zone       = "us-east-2a"
   tags{
-    Name                  = "BastionHost"
+    Name                  = "TT_Blue_Web1"
   }
   # We run a remote provisioner on the instance after creating it.
   # In this case, we just install nginx and start it. By default,
@@ -47,13 +47,13 @@ resource "aws_instance" "web1" {
   }
 }
 
-resource "aws_instance" "web2" {
+resource "aws_instance" "blueweb2" {
   # The connection block tells our provisioner how to
   # communicate with the resource (instance)
   connection {
     # The default username for our AMI
     user = "ubuntu"
-
+    host = "${aws_instance.blueweb2.private_ip}"
     # The connection will use the local SSH agent for authentication.
   }
 
@@ -75,7 +75,7 @@ resource "aws_instance" "web2" {
   subnet_id               = "${aws_subnet.default_blue.id}"
   availability_zone       = "us-east-2a"
   tags{
-    Name                  = "BastionHost"
+    Name                  = "TT_Blue_Web2"
   }
   # We run a remote provisioner on the instance after creating it.
   # In this case, we just install nginx and start it. By default,

@@ -81,6 +81,14 @@ resource "aws_security_group" "default" {
   	cidr_blocks = ["10.0.3.0/24"]
     }
 
+  # Anything from The Management Network
+  ingress {
+  	from_port   = 0
+  	to_port     = 0
+  	protocol    = -1
+  	cidr_blocks = ["13.58.109.134/32"]
+    }
+
   # outbound internet access
   egress {
     from_port   = 0
