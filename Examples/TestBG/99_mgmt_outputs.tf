@@ -13,3 +13,7 @@ output "bastion_public_address" {
 output "chef_private_address" {
   value = "${aws_instance.chefhost.private_ip}"
 }
+
+#output "chef_public_address" {
+#  value = "${aws_instance.chefhost.public_ip}"
+#}
